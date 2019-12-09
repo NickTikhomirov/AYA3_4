@@ -13,7 +13,7 @@ using std::string;
 using std::make_pair;
 
 int main(
-	int argc, 
+	int argc,
 	char *argv[]
 ) {
 	unordered_map<string, unordered_map<string, DataKit>> contents;
@@ -22,7 +22,7 @@ int main(
 	else path_to_ftp = path(argv[1]);
 
 	cout << "Begin searching!\n";
-	
+
 	for (const directory_entry& y : directory_iterator{ path_to_ftp }) {
 		for (const directory_entry& x : directory_iterator{ y }) {
 			if (is_right_file(x.path())) {
@@ -42,20 +42,18 @@ int main(
 							unordered_map<string, DataKit>{
 								{id, DataKit{ x.path().stem().string() }}
 					}));
-				}
-				else if (contents[name].find(id) == contents[name].end()) {
+				} else if (contents[name].find(id) == contents[name].end()) {
 					contents[name].insert(make_pair(id, DataKit{ x.path().stem().string() }));
-				}
-				else contents[name][id].examine(x.path().stem().string());
+				} else contents[name][id].examine(x.path().stem().string());
 			}
 		}
 	}
 
 	cout << "Finish searching.\n\n\nBegin naming best results\n";
 	for (auto thing : contents) {
-		for (auto things_thing: thing.second) {
-			cout << thing.first<<"  Account:"<<things_thing.first<<" files:"
-				<<things_thing.second.counter<<" lastdate:"<<things_thing.second.date<<"\n";
+		for (auto things_thing : thing.second) {
+			cout << thing.first << "  Account:" << things_thing.first << " files:"
+				<< things_thing.second.counter << " lastdate:" << things_thing.second.date << "\n";
 		}
 	}
 }

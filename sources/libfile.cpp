@@ -10,9 +10,6 @@ using std::size_t;
 using std::stoi;
 
 
-#include <iostream>
-using namespace std;
-
 
 bool is_right_file(path a) {
 	if (a.extension().string() != ".txt") return false;
