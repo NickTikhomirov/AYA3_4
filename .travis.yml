@@ -13,12 +13,6 @@ jobs:
       script:
         - chmod 755 scripts/*.sh
         - docker run -v `pwd`:`pwd` -w `pwd` rusdevops/bootstrap-cpp ./scripts/checks.sh
-    - name: "tests"
-      script:
-        - docker run -t -v $(pwd):/var/builder -w /var/builder --entrypoint ./scripts/tests.sh toliak/bootstrap-cpp
-    - name: "coverage"
-      script:
-        - docker run -t -v $(pwd):/var/builder -w /var/builder --entrypoint ./scripts/coverage.sh toliak/bootstrap-cpp
-
+ 
 notifications:
   email: false
