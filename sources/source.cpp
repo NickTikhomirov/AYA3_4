@@ -44,7 +44,9 @@ int main(
 					}));
 				} else if (contents[name].find(id) == contents[name].end()) {
 					contents[name].insert(make_pair(id, DataKit{ x.path().stem().string() }));
-				} else contents[name][id].examine(x.path().stem().string());
+				} else {
+					contents[name][id].examine(x.path().stem().string());
+				}
 			}
 		}
 	}
